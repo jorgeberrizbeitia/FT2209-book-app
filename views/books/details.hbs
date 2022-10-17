@@ -19,6 +19,14 @@
   <a href="/books/{{details._id}}/edit">
     <button>Ir a Editar</button>
   </a>
+
+  {{!-- <a href="/books/{{details._id}}/delete"> --}}
+  <form action="/books/{{details._id}}/delete" method="POST">
+    <button>Borrar</button>
+  </form>
+  {{!-- </a> --}}
+
+
   
 
 </div>

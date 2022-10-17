@@ -3,7 +3,10 @@
   <h4>Edita un libro</h4>
 
 
-  <form action="/books/edit" method="POST">
+  <form action="/books/{{details._id}}/edit" method="POST">
+
+    {{!-- <input type="text" name="_id" value="{{details._id}}" style="display: none"> --}}
+    {{!-- en este caso no es buena practica, pero podemos enviar informacion adicional oculta. Algo que no llena el usuario --}}
 
     <label for="title">Titulo:</label>
     <input type="text" name="title" value="{{details.title}}">

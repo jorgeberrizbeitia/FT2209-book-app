@@ -101,13 +101,53 @@ router.get("/:bookId/edit", (req, res, next) => {
 
 })
 
-// POST "/books/edit" => recibir los valor para actualizar el libro y redireccionar
+// POST "/books/:bookId/edit" => recibir los valor para actualizar el libro y redireccionar
+router.post("/:bookId/edit", (req, res, next) => {
 
+  // recibir la data a a editar
+  const { bookId } = req.params
+  // req.body
+  const { title, description, author } = req.body
+  console.log(req.body)
+
+  const bookUpdate = {
+    title, 
+    description,
+    author
+  }
+
+  // actualizar el libro
+  Book.findByIdAndUpdate(bookId, bookUpdate)
+  .then(() => {
+    // redireccionar al usuario
+    res.redirect("/books")
+  })
+  .catch((error) => {
+    next(error)
+  })
+
+
+})
 
 
 
 
 // DELETE (BORRAR)
+// POST "/books/:bookId/delete"
+router.post("/:bookId/delete", (req, res, next) => {
+
+  // 1. buscar el libro por su id y borrarlo
+  Book.findByIdAndDelete(req.params.bookId)
+  .then(() => {
+    // 2. redireccionar a "/books"
+    res.redirect("/books")
+  })
+  .catch((error) => {
+    next(error)
+  })
+
+
+})
 
 
 module.exports = router;
