@@ -1,0 +1,24 @@
+<div>
+
+  <h2>Detalles del Libro</h2>
+  
+  <div>
+    <h4>{{details.title}}</h4>
+    <p>{{details.description}}</p>
+    <p>Autor: {{details.author}}</p>
+  </div>
+  
+  {{!-- {{#with details}}
+    <div>
+      <h4>{{title}}</h4>
+      <p>{{description}}</p>
+      <p>Autor: {{author}}</p>
+    </div>
+  {{/with}} --}}
+
+  <a href="/books/{{details._id}}/edit">
+    <button>Ir a Editar</button>
+  </a>
+  
+
+</div>
