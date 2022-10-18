@@ -2,10 +2,12 @@
 
   <h3>Lista de Autores</h3>
 
-  {{#each authorList}}
+  <ul class="list-group list-red">
+    {{#each authorList}}
 
-    <li>{{this.name}} nacid@ en {{this.country}} en año {{this.yearBorn}}</li>
+      <li class="list-group-item">{{this.name}} nacid@ en {{this.country}} en año {{this.yearBorn}}</li>
 
-  {{/each}}
+    {{/each}}
+  </ul>
 
 </div>

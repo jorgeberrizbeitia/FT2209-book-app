@@ -1,37 +1,45 @@
 <div>
 
-  <h4>Añade un libro</h4>
+  <h4 class="display-4">Añade un libro</h4>
 
   <form action="/books/create" method="POST">
   {{!-- action es a donde va a enviar la data --}}
   {{!-- method es que tipo de llamada va a hacer => GET o POST --}}
 
-    <label for="title">Titulo:</label>
-    <input type="text" name="title">
+    <div>
+      <label for="title" class="form-label">Titulo:</label>
+      <input type="text" name="title" class="form-control">
+    </div>
+
+    <div>
+      <label for="description" class="form-label">Descripción:</label>
+      <input type="text" name="description" class="form-control">
+    </div>
+
+    <div>
+      <label for="author" class="form-label">Autor:</label>
+      {{!-- <input type="text" name="author"> --}}
+
+      <select name="author" multiple="true" class="form-select">
+        {{!-- select se usa para abrir un deplegable de selecciones --}}
+
+          {{!-- <option value="patata">patata</option>
+          <option value="tomate">tomate</option>
+          <option value="banana">banana</option> --}}
+
+          <option value="">Eliga autor</option>
+
+          {{#each authorList}}
+              <option value="{{this._id}}">{{this.name}}</option>
+          {{/each}}
+
+      </select>
+    </div>
+
+
+
     <br>
-    <label for="description">Descripción:</label>
-    <input type="text" name="description">
-    <br>
-    <label for="author">Autor:</label>
-    {{!-- <input type="text" name="author"> --}}
-
-    <select name="author" multiple="true">
-      {{!-- select se usa para abrir un deplegable de selecciones --}}
-
-        {{!-- <option value="patata">patata</option>
-        <option value="tomate">tomate</option>
-        <option value="banana">banana</option> --}}
-
-        <option value="">Eliga autor</option>
-
-        {{#each authorList}}
-            <option value="{{this._id}}">{{this.name}}</option>
-        {{/each}}
-
-    </select>
-
-    <br>
-    <button type="submit">Añadir</button>
+    <button type="submit" class="btn btn-primary">Añadir</button>
     {{!-- cuando el boton está dentro de un form, se comporta siempre como submit de forma predeterminada --}}
 
   </form>
