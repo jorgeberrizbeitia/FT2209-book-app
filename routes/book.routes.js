@@ -35,7 +35,8 @@ router.get("/:bookId/details", (req, res, next) => {
   // Book.findOne({title: title})
   .then((response) => {
     console.log(response)
-    console.log(".author", response.author)
+
+    // console.log(".author", response.author)
 
     res.render("books/details.hbs", {
       details: response
