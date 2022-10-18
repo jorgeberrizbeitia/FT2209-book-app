@@ -11,4 +11,7 @@ const bookRoutes = require("./book.routes.js")
 router.use("/books", bookRoutes)
 // "/" significa, que el URL empiece en "/", cualquier llamada
 
+const authorRoutes = require("./author.routes.js")
+router.use("/authors", authorRoutes)
+
 module.exports = router;
