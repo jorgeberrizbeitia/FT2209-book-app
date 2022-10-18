@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Book = require("../models/Book.model.js")
+const Author = require("../models/Author.model.js")
 
 // READ (LEER)
 
@@ -30,9 +31,12 @@ router.get("/:bookId/details", (req, res, next) => {
   let { bookId } = req.params
 
   Book.findById(bookId)
+  .populate("author") // busca en la colección correspondiente esta propiedad
   // Book.findOne({title: title})
   .then((response) => {
     console.log(response)
+    console.log(".author", response.author)
+
     res.render("books/details.hbs", {
       details: response
     })
@@ -48,8 +52,18 @@ router.get("/:bookId/details", (req, res, next) => {
 // CREATE (CREAR)
 
 // GET "/books/create" => ruta para renderizar un formulario de crear libro al usuario
-router.get("/create", (req, res, next) => {
-  res.render("books/create.hbs")
+router.get("/create", async (req, res, next) => {
+
+  try {
+    // antes de renderizar, voy a buscar todos los autores de la BD
+    const authorList = await Author.find()
+    res.render("books/create.hbs", {
+      authorList
+    })
+  } catch (error) {
+    next(error)
+  }
+
 })
 
 // POST "/books/create" => ruta para recibir la data del formulario y crear un libro

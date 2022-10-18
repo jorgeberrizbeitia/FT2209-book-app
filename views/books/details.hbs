@@ -5,7 +5,17 @@
   <div>
     <h4>{{details.title}}</h4>
     <p>{{details.description}}</p>
-    <p>Autor: {{details.author}}</p>
+
+    {{!-- <p>Autor: {{details.author.name}}</p>
+    <p>Nacid@ en {{details.author.country}} en {{details.author.yearBorn}}</p> --}}
+
+    {{#each details.author}}
+
+      <p>Autor: {{this.name}}</p>
+      <p>Nacid@ en {{this.country}} en {{this.yearBorn}}</p>
+
+    {{/each}}
+
   </div>
   
   {{!-- {{#with details}}

@@ -13,11 +13,29 @@
     <input type="text" name="description">
     <br>
     <label for="author">Autor:</label>
-    <input type="text" name="author">
+    {{!-- <input type="text" name="author"> --}}
+
+    <select name="author" multiple="true">
+      {{!-- select se usa para abrir un deplegable de selecciones --}}
+
+        {{!-- <option value="patata">patata</option>
+        <option value="tomate">tomate</option>
+        <option value="banana">banana</option> --}}
+
+        <option value="">Eliga autor</option>
+
+        {{#each authorList}}
+            <option value="{{this._id}}">{{this.name}}</option>
+        {{/each}}
+
+    </select>
+
     <br>
     <button type="submit">Añadir</button>
     {{!-- cuando el boton está dentro de un form, se comporta siempre como submit de forma predeterminada --}}
 
   </form>
+
+  {{!-- {{authorList}} --}}
 
 </div>
