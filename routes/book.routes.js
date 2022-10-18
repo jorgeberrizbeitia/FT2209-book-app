@@ -36,6 +36,7 @@ router.get("/:bookId/details", (req, res, next) => {
     res.render("books/details.hbs", {
       details: response
     })
+    
   })
   .catch((error) => {
     next(error)
@@ -120,7 +121,9 @@ router.post("/:bookId/edit", (req, res, next) => {
   Book.findByIdAndUpdate(bookId, bookUpdate)
   .then(() => {
     // redireccionar al usuario
-    res.redirect("/books")
+    // res.redirect("/books")
+    // queremos hacer una redirección a los detalles
+    res.redirect(`/books/${bookId}/details`)
   })
   .catch((error) => {
     next(error)
