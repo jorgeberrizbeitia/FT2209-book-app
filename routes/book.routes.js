@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Book = require("../models/Book.model.js")
 const Author = require("../models/Author.model.js")
+const uploader = require("../middlewares/cloudinary.js")
+console.log(uploader)
 
 // READ (LEER)
 
@@ -68,7 +70,12 @@ router.get("/create", async (req, res, next) => {
 })
 
 // POST "/books/create" => ruta para recibir la data del formulario y crear un libro
-router.post("/create", (req, res, next) => {
+
+// antes de llegar a la funcion de la ruta, pasa por cloudinary
+router.post("/create", uploader.single("cover"), (req, res, next) => {
+
+  console.log("req.file.path", req.file) // esto viene de cloudinary y es el URL de acceso a la image
+
   console.log(req.body) // aqui vendrá todos los datos del formulario
 
   // 1. usar la data para crear un nuevo libro
@@ -77,7 +84,8 @@ router.post("/create", (req, res, next) => {
   let bookToAdd = {
     title: req.body.title,
     description: req.body.description,
-    author: req.body.author
+    author: req.body.author,
+    cover: req.file.path // https://cloudinary.com/my-image-patata.jpg
   }
 
   Book.create(bookToAdd)
