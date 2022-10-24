@@ -2,7 +2,8 @@
 
   <h4 class="display-4">Añade un libro</h4>
 
-  <form action="/books/create" method="POST">
+  {{!-- ! NO OLVIDAR enctype="multipart/form-data" --}}
+  <form action="/books/create" method="POST" enctype="multipart/form-data">
   {{!-- action es a donde va a enviar la data --}}
   {{!-- method es que tipo de llamada va a hacer => GET o POST --}}
 
